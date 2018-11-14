@@ -16,10 +16,10 @@ from org.eclipse.smarthome.core.thing.type import ChannelKind
 from org.eclipse.smarthome.core.types import TypeParser
 from org.eclipse.smarthome.core.thing import ThingStatus
 
-import openhab
-from openhab.jsr223 import scope
-from openhab.osgi.events import OsgiEventTrigger
-from openhab.log import logging, LOG_PREFIX
+import core
+from core.jsr223 import scope
+from core.osgi.events import OsgiEventTrigger
+from core.log import logging, LOG_PREFIX
 
 from org.slf4j import Logger, LoggerFactory
 
@@ -119,12 +119,12 @@ class CronTrigger(Trigger):
 class StartupTrigger(Trigger):
     def __init__(self, triggerName=None):
         triggerName = triggerName or uuid.uuid1().hex
-        self.trigger = TriggerBuilder.create().withId(triggerName).withTypeUID("openhab.STARTUP_MODULE_ID").withConfiguration(Configuration()).build()
+        self.trigger = TriggerBuilder.create().withId(triggerName).withTypeUID(core.STARTUP_MODULE_ID).withConfiguration(Configuration()).build()
 
 class ShutdownTrigger(Trigger):
     def __init__(self, triggerName=None):
         triggerName = triggerName or uuid.uuid1().hex
-        self.trigger = TriggerBuilder.create().withId(triggerName).withTypeUID("openhab.SHUTDOWN_MODULE_ID").withConfiguration(Configuration()).build()
+        self.trigger = TriggerBuilder.create().withId(triggerName).withTypeUID(core.SHUTDOWN_MODULE_ID).withConfiguration(Configuration()).build()
 
 # Item Registry Triggers
 
@@ -161,7 +161,7 @@ class DirectoryEventTrigger(Trigger):
             'event_kinds': str(event_kinds),
             'watch_subdirectories': watch_subdirectories,
         }
-        self.trigger = TriggerBuilder.create().withId(triggerId).withTypeUID("openhab.DIRECTORY_TRIGGER_MODULE_ID").withConfiguration(Configuration(config)).build()
+        self.trigger = TriggerBuilder.create().withId(triggerId).withTypeUID(core.DIRECTORY_TRIGGER_MODULE_ID).withConfiguration(Configuration(config)).build()
 
 # Function decorator trigger support
 

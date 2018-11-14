@@ -46,7 +46,7 @@ class _Jsr223ModuleFinder(object):
             sys.modules[fullname] = m
                 
     def find_module(self, fullname, path=None):
-        if fullname == "openhab.jsr223.scope":
+        if fullname == "core.jsr223.scope":
             return self
         
 sys.meta_path.append(_Jsr223ModuleFinder())

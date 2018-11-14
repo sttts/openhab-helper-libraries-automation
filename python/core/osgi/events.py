@@ -8,12 +8,12 @@ from org.osgi.service.cm import ManagedService
 from org.eclipse.smarthome.config.core import Configuration
 from org.eclipse.smarthome.automation.handler import TriggerHandler
 
-import openhab
-from openhab.jsr223 import scope
+import core
+from core.jsr223 import scope
 scope.scriptExtension.importPreset("RuleSupport")
 
-from openhab.osgi import bundle_context
-from openhab.log import logging
+from core.osgi import bundle_context
+from core.log import logging
 
 import uuid
 import java.util
@@ -92,7 +92,7 @@ class OsgiEventTrigger(scope.Trigger):
         self.filter = filter or (lambda event: True)
         triggerId = type(self).__name__ + "-" + uuid.uuid1().hex
         config = Configuration()
-        scope.Trigger.__init__(self, triggerId, openhab.OSGI_TRIGGER_ID, config)
+        scope.Trigger.__init__(self, triggerId, core.OSGI_TRIGGER_ID, config)
         global osgi_triggers
         osgi_triggers[self.id] = self
         

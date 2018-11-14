@@ -1,14 +1,14 @@
 from __future__ import absolute_import
 
 import unittest
-from openhab.log import logging
-from openhab.triggers import ItemStateUpdateTrigger
+from core.log import logging
+from core.triggers import ItemStateUpdateTrigger
 
-from openhab.jsr223.scope import scriptExtension, events, OnOffType
+from core.jsr223.scope import scriptExtension, events, OnOffType
 scriptExtension.importPreset("RuleSupport")
 scriptExtension.importPreset("RuleSimple")
 
-from openhab.jsr223.scope import SimpleRule
+from core.jsr223.scope import SimpleRule
 
 _result_template = """{{
   "run": {run},

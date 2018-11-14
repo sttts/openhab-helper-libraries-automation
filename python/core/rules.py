@@ -2,8 +2,8 @@ from inspect import isclass
 from java.util import UUID
 from org.eclipse.smarthome.automation import Rule as SmarthomeRule
 
-from openhab.log import logging, log_traceback, LOG_PREFIX
-from openhab.jsr223 import scope, get_automation_manager
+from core.log import logging, log_traceback, LOG_PREFIX
+from core.jsr223 import scope, get_automation_manager
 scope.scriptExtension.importPreset("RuleSimple")
 
 # this needs some attention in order to work with Automation API changes in 2.4.0 snapshots since build 1319

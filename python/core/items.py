@@ -2,8 +2,8 @@
 
 from org.slf4j import Logger, LoggerFactory
 
-from openhab import osgi, jsr223, JythonItemProvider
-from openhab.jsr223 import scope
+from core import osgi, jsr223, JythonItemProvider
+from core.jsr223 import scope
 
 __all__ = ["add", "remove"]
 
