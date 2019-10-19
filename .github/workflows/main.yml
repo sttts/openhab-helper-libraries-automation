@@ -1,0 +1,33 @@
+name: sync
+
+on:
+  push:
+    branches:
+    - actions
+  schedule:
+  - cron: "0 2 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup SSH Keys and known_hosts
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        echo "${DEPLOY_KEY}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+    - name: Run a multi-line script
+      run: |
+        set -x
+        eval "$(ssh-agent -s)"
+        ssh-add ~/.ssh/id_rsa
+        git clone https://github.com/openhab-scripters/openhab-helper-libraries.git
+        cd openhab-helper-libraries
+        git remote add automation git@github.com:sttts/openhab-helper-libraries-automation.git
+        git fetch automation
+        git subtree split --prefix=Core/automation > sha
+        git push automation $(cat sha):master
