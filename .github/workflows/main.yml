@@ -27,7 +27,7 @@ jobs:
         ssh-add ~/.ssh/id_rsa
         git clone https://github.com/openhab-scripters/openhab-helper-libraries.git
         cd openhab-helper-libraries
-        git remote add automation git@github.com:sttts/openhab-helper-libraries-automation.git
+        git remote add automation git@github.com:sttts/openhab-helper-libraries-automation-lib.git
         git fetch automation
-        git subtree split --prefix=Core/automation > sha
+        git subtree split --prefix=Core/automation/lib > sha
         git push automation $(cat sha):master
